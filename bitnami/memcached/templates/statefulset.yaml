@@ -62,7 +62,7 @@ spec:
         runAsUser: {{ .Values.securityContext.runAsUser }}
       {{- end }}
       serviceAccountName: {{ template "memcached.serviceAccountName" . }}
-      {{- if or .Values.persistence.enabled .Values.initContainers }}
+      {{- if .Values.initContainers }} # Values.permissions.enabled check removed
       initContainers:
         {{- if .Values.persistence.enabled }}
         - name: volume-permissions
